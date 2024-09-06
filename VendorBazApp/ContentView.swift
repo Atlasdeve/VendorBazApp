@@ -1,26 +1,13 @@
-//
-//  ContentView.swift
-//  VendorBazApp
-//
-//  Created by Atlas on 9/6/24.
-//
-
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
-        }
-        .padding()
-    }
-}
+    @StateObject var networkMonitor = NetworkMonitor()
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+    var body: some View {
+        if networkMonitor.isConnected {
+            MainView()
+        } else {
+            NoConnectionView()
+        }
     }
 }
